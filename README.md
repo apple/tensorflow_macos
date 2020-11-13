@@ -1,0 +1,57 @@
+## Accelerated TensorFlow and TensorFlow Addons on Mac
+
+### INTRODUCTION
+
+This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Addons on the Mac platform, using Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
+
+### SUPPORTED VERSIONS
+
+- TensorFlow r2.4rc0
+- TensorFlow Addons 0.11.2
+
+### REQUIREMENTS
+
+- macOS 11.0 Big Sur
+
+### INSTALLATION
+
+An archive file containing an installation stript can be downloaded from the [releases](https://github.com/apple/tensorflow_macos/releases).
+
+#### Details
+
+- To try this out, paste the following into your terminal: 
+
+``` 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
+```
+
+  This will verify your system, ask you for confirmation, then create a [virtual environment](https://docs.python.org/3.8/tutorial/venv.html) with TensorFlow for macOS installed.
+
+- Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases).  The archive contains an installation script, 
+  accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.  
+
+#### Un-supported Versions
+
+For Macs with Apple Silicon, the current packages are currently unavailable:
+- SciPy and dependent packages
+- Server/Client TensorBoard packages
+
+### ISSUES AND FEEDBACK
+
+Feedback is welcomed!
+
+Please submit feature requests or report issues via [GitHub Issues](https://github.com/apple/tensorflow_macos/issues).
+
+### ADDITIONAL INFORMATION
+
+#### Device Selection (Optional)
+
+Please use `mlcompute.set_mlc_device(device_name=‘any’)` to choose between the different devices to run your neural network. The default value for `device_name` is `‘any’`. Other available options are `‘cpu’` and `‘gpu’`. Choosing `‘any’` means that ML Compute will select the best device(s) on your system to run your network. Below is an example of using device selection in your code:
+
+    from tensorflow.python.compiler.mlcompute import mlcompute
+    
+    # Select between 'cpu', 'gpu', and 'any'
+    mlcompute.set_mlc_device(device_name='any')
+
+
+
