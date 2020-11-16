@@ -2,7 +2,7 @@
 
 ### INTRODUCTION
 
-This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Addons on the Mac platform, using Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
+This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Addons on the Mac platform using Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
 
 ### SUPPORTED VERSIONS
 
