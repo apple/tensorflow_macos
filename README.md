@@ -43,15 +43,6 @@ Feedback is welcomed!
 Please submit feature requests or report issues via [GitHub Issues](https://github.com/apple/tensorflow_macos/issues).
 
 ### ADDITIONAL INFORMATION
-
-#### Device Selection (Optional)
-
-Please use `mlcompute.set_mlc_device(device_name=‘any’)` to choose between the different devices to run your neural network. The default value for `device_name` is `‘any’`. Other available options are `‘cpu’` and `‘gpu’`. Choosing `‘any’` means that ML Compute will select the best device(s) on your system to run your network. Below is an example of using device selection in your code:
-
-    from tensorflow.python.compiler.mlcompute import mlcompute
-    
-    # Select between 'cpu', 'gpu', and 'any'
-    mlcompute.set_mlc_device(device_name='any')
     
 #### Device Selection (Optional)
 
