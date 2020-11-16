@@ -32,7 +32,7 @@ An archive file containing an installation script can be downloaded from the [re
 
 #### Un-supported Versions
 
-For Macs with M1, the current packages are currently unavailable:
+For Macs with M1, the following packages are currently unavailable:
 - SciPy and dependent packages
 - Server/Client TensorBoard packages
 
