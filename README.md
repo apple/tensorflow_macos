@@ -11,7 +11,7 @@ This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Ad
 
 ### REQUIREMENTS
 
-- macOS 11.0 Big Sur
+- macOS 11.0+
 
 ### INSTALLATION
 
