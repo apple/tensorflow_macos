@@ -15,7 +15,7 @@ This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Ad
 
 ### INSTALLATION
 
-An archive file containing an installation stript can be downloaded from the [releases](https://github.com/apple/tensorflow_macos/releases).
+An archive file containing an installation script can be downloaded from the [releases](https://github.com/apple/tensorflow_macos/releases).
 
 #### Details
 
@@ -32,7 +32,7 @@ An archive file containing an installation stript can be downloaded from the [re
 
 #### Un-supported Versions
 
-For Macs with Apple Silicon, the current packages are currently unavailable:
+For Macs with M1, the current packages are currently unavailable:
 - SciPy and dependent packages
 - Server/Client TensorBoard packages
 
