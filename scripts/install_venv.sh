@@ -59,20 +59,17 @@ tensorflow_version=0.1a0
 
 function usage() {
 
-  echo "Installs the pre-release version of TensorFlow for Macos into a virtual environment" 
-  echo
-  echo "If configure has already been run before, running configure "
-  echo "will simply reconfigure the build with no changes. "
+  echo "Installs the pre-release version of TensorFlow for Macos into a virtual environment." 
   echo
   echo "Usage: $0 [options] <virtual_env>"
   echo
   echo "WARNING: Existing packages in this virtual environment may be modified."
   echo
+  echo "  -p, --prompt                      Prompt for the path to the virtual environment."
+  echo
   echo "  --python=<python path>            Path to the python executable to use."
   echo
   echo "  -y, --yes                         Execute without prompting."
-  echo
-  echo "  --no-dependencies                 Only install tensorflow, ignoring dependencies." 
   echo
 
   exit 1
@@ -112,6 +109,8 @@ while [ $# -gt 0 ]
     --yes|-y)        yes_opt=1;;
 
     --help|-h)       usage;;
+    
+    --prompt|-p)     prompt_venv=1;;
 
     -*)              error_exit "Unknown option $1.";;
 
@@ -120,9 +119,6 @@ while [ $# -gt 0 ]
   shift
 done
 
-if [[ -z $venv_opt ]] ; then 
-  usage
-fi
 
 # Do a software version check.
 
@@ -131,7 +127,6 @@ if [[ $(sw_vers -productName) != macOS ]] || [[ $(sw_vers -productVersion) != "1
 fi
 
 # Are we running the script from the correct location?
-
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 arch=$(uname -m)
 package_dir="$script_dir/$arch"
@@ -148,6 +143,26 @@ elif [[ $arch == arm64 ]] ; then
 else 
   error_exit "Architecture $arch not supported; must be x86_64 or arm64."
 fi 
+
+# Verify virtual environment stuff
+if [[ $prompt_venv == 1 ]] ; then 
+
+  default="$HOME/tensorflow_macos_venv/" 
+
+  # Get the directory 
+  read -p "Path to new or existing virtual environment [default: ${default}]: "
+  
+  eval venv_opt="${REPLY}"
+  
+  if [[ -z $venv_opt ]] ; then 
+    venv_opt=$default
+  fi
+else 
+  if [[ -z $venv_opt ]] ; then 
+    usage
+  fi
+fi
+
 
 
 # Check: Did the right virtual environment arguments get passed in? 
@@ -220,7 +235,7 @@ else
 
   # Check: Make sure the python version is correct.  
   if [[ $($python_bin --version) != *"3.8"* ]] ; then 
-    error_exit "Python executable $python_bin not version 3.8.  Please specify a Python 3.8 executable with the --python option."
+    error_exit "Error retrieving python version, or python executable $python_bin not version 3.8.  Please specify a Python 3.8 executable with the --python option."
   else
     echo "Using python from $python_bin." 
   fi
@@ -262,6 +277,7 @@ if [[ $yes_opt != 1 ]] ; then
 
   if [[ ! $REPLY =~ ^[Yy]$ ]]
   then
+    echo
     exit 1
   fi
   echo
