@@ -2,7 +2,7 @@
 
 ### INTRODUCTION
 
-This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Addons on the Mac platform using Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
+This pre-release delivers hardware accelerated TensorFlow and TensorFlow Addons for macOS 11.0 Big Sur.  Native hardware acceleration is supported on both Apple M1 and Intel Macs through Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
 
 ### SUPPORTED VERSIONS
 
@@ -15,11 +15,11 @@ This pre-release delivers hardware acceleration for TensorFlow and TensorFlow Ad
 
 ### INSTALLATION
 
-An archive file containing an installation script can be downloaded from the [releases](https://github.com/apple/tensorflow_macos/releases).
+An archive containing Python packages and an installation script can be downloaded from the [releases](https://github.com/apple/tensorflow_macos/releases).
 
 #### Details
 
-- To try this out, paste the following into your terminal: 
+- To quickly try this out, copy and paste the following into Terminal: 
 
   ``` 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
@@ -29,7 +29,7 @@ An archive file containing an installation script can be downloaded from the [re
 - Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases).  The archive contains an installation script, 
   accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.  
 
-#### Un-supported Versions
+#### Notes
 
 For Macs with M1, the following packages are currently unavailable:
 - SciPy and dependent packages
