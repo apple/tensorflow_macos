@@ -2,7 +2,7 @@
 
 ### INTRODUCTION
 
-This pre-release delivers hardware accelerated TensorFlow and TensorFlow Addons for macOS 11.0 Big Sur.  Native hardware acceleration is supported on both Apple M1 and Intel Macs through Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
+This pre-release delivers hardware-accelerated TensorFlow and TensorFlow Addons for macOS 11.0+.  Native hardware acceleration is supported on Macs with M1 and Intel-based Macs through Apple’s [ML Compute](https://developer.apple.com/documentation/mlcompute) framework.
 
 ### SUPPORTED VERSIONS
 
