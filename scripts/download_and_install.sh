@@ -20,7 +20,7 @@ echo "Installation script for pre-release tensorflow_macos 0.1alpha0.  Please vi
 echo "for instructions and license information."   
 echo
 echo "This script will download tensorflow_macos 0.1alpha0 and needed binary dependencies, then install them into a new "
-echo "or existing Python 3.8 virtual enviornoment."
+echo "or existing Python 3.8 virtual environment."
 
 # Make sure the user knows what's going on.  
 read -p 'Continue [y/N]? '    
