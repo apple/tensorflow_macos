@@ -12,6 +12,7 @@ This pre-release delivers hardware-accelerated TensorFlow and TensorFlow Addons 
 ### REQUIREMENTS
 
 - macOS 11.0+
+- Python 3.8, available from the [Xcode Command Line Tools](https://developer.apple.com/download/more/?=command%20line%20tools)
 
 ### INSTALLATION
 
