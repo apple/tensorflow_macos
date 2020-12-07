@@ -1,10 +1,10 @@
-#/bin/bash
+#!/bin/bash
 
 set -e
 
-VERSION=0.1alpha0
+VERSION=0.1alpha1
 INSTALLER_PACKAGE=tensorflow_macos-$VERSION.tar.gz
-INSTALLER_PATH=https://github.com/apple/tensorflow_macos/releases/download/v0.1alpha0/tensorflow_macos-0.1alpha0.tar.gz
+INSTALLER_PATH=https://github.com/apple/tensorflow_macos/releases/download/$VERSION/$INSTALLER_PACKAGE
 INSTALLER_SCRIPT=install_venv.sh
 
 echo

@@ -55,7 +55,8 @@ arch_list_arm64=(  numpy-1.18.5-cp38-cp38-macosx_11_0_arm64.whl
 	           tensorflow_addons-0.11.2+mlcompute-cp38-cp38-macosx_11_0_arm64.whl )
 
 
-tensorflow_version=0.1a0
+tensorflow_version=0.1a1
+
 
 function usage() {
 
@@ -242,7 +243,23 @@ else
 
 fi
 
+python_filetypes=$(file $python_bin | grep -o -E 'Mach-O 64-bit executable [a-zA-Z0-9_]+$' | sed -E 's|^.*Mach-O 64-bit executable ([a-zA-Z0-9_]+)$|\1|g')
 
+is_present=0
+arm64e_present=0
+
+for t in $python_filetypes ; do
+  if [[ $t -eq $arch ]] ; then
+    is_present=1
+  fi
+  if [[ $t -eq arm64e ]] ; then 
+    arm64e_present=1
+  fi
+done
+
+if [[ $is_present -eq 0 ]] && [[ $arm64e_present -eq 1 ]] && [[ $arch -eq arm64 ]] ; then
+  error_exit "Python executable has CPU subtype arm64e; only arm64 CPU subtype is currently supported.  Please use the Python version bundled in the Xcode Command Line Tools."
+fi
 
 
 # Print out confirmation of actions, run with it
@@ -302,7 +319,7 @@ fi
 
 # Upgrade pip and base packages 
 echo ">> Installing and upgrading base packages."
-"$python_bin" -m pip install --upgrade pip wheel setuptools cached-property six
+"$python_bin" -m pip install --force pip==20.2.4 wheel setuptools cached-property six
 
 echo ">> Installing bundled binary dependencies."
 
@@ -318,8 +335,11 @@ echo ">> Installing dependencies."
 # Install some convenience tools
 "$python_bin" -m pip install ipython
 
-# Finally, install the tensorflow wheel itself
+# Install the tensorflow wheel itself
 "$python_bin" -m pip install --upgrade --force -t "$VIRTUAL_ENV/lib/python3.8/site-packages/" --no-dependencies "$package_dir"/tensorflow_macos*-cp38-cp38-macosx_11_0_$arch.whl
+
+# Finally, upgrade pip to give the developers the correct version.
+"$python_bin" -m pip install --upgrade pip
 
 echo '###########################################################################'
 echo 
