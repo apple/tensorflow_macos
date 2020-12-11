@@ -46,7 +46,7 @@ set -e
 arch_list_x86_64=( numpy-1.18.5-cp38-cp38-macosx_11_0_x86_64.whl
                    grpcio-1.33.2-cp38-cp38-macosx_11_0_x86_64.whl       
                    h5py-2.10.0-cp38-cp38-macosx_11_0_x86_64.whl
-		   scipy-1.5.4-cp38-cp38-macosx_11_0_x86_64.whl  
+		           scipy-1.5.4-cp38-cp38-macosx_11_0_x86_64.whl  
                    tensorflow_addons-0.11.2+mlcompute-cp38-cp38-macosx_11_0_x86_64.whl )
 
 arch_list_arm64=(  numpy-1.18.5-cp38-cp38-macosx_11_0_arm64.whl
@@ -66,7 +66,7 @@ function usage() {
   echo
   echo "WARNING: Existing packages in this virtual environment may be modified."
   echo
-  echo "  -p, --prompt                      Prompt for the path to the virtual environment."
+  echo "  -p, --prompt                      Prompt for the path to a virtual environment or conda environment."
   echo
   echo "  --python=<python path>            Path to the python executable to use."
   echo
@@ -183,7 +183,7 @@ tf_install_message=""
 
 # Now, see if a virtual environment was given as an argument.
 if [[ -e $virtual_env ]] ; then 
-  if [[ ! -d "$virtual_env" ]] || [[ ! -e "$virtual_env/bin/activate" ]] ; then 
+  if [[ ! -d "$virtual_env" ]] || [[ ! -e "$virtual_env/bin/activate" ]] && [[ ! -e "$virtual_env/bin/python" ]]; then 
     error_exit "$virtual_env does not seem to be a virtual environment.  Please specify a new directory or an existing Python 3.8 virtual environment. "
   fi
   create_venv=0
@@ -307,7 +307,12 @@ if [[ $create_venv == 1 ]] ; then
   "$python_bin" -m venv "$virtual_env"
 fi
 
-. "$virtual_env/bin/activate"
+# Activates virtual environment. If activate doesn't exist, it's a conda env and we can
+# proceed without activating the env, since we'll be installing via conda's Python3 soon.
+if [[ -e "$virtual_env/bin/activate" ]] ; then
+    . "$virtual_env/bin/activate"
+fi
+
 python_bin="$virtual_env/bin/python3"
 
 export MACOSX_DEPLOYMENT_TARGET=11.0
@@ -325,7 +330,8 @@ echo ">> Installing bundled binary dependencies."
 
 # Note: As soon python packaging supports macOS 11.0 in full, we can remove the -t hackery.
 for f in ${packages[@]} ; do 
-  "$python_bin" -m pip install --upgrade -t "$VIRTUAL_ENV/lib/python3.8/site-packages/" --no-dependencies --force "$package_dir/$f"
+  echo ">> Running: $python_bin" -m pip install --upgrade -t "$virtual_env/lib/python3.8/site-packages/" --no-dependencies --force "$package_dir/$f"
+  "$python_bin" -m pip install --upgrade -t "$virtual_env/lib/python3.8/site-packages/" --no-dependencies --force "$package_dir/$f"
 done
 
 # Manually install all the other dependencies. 
@@ -336,7 +342,7 @@ echo ">> Installing dependencies."
 "$python_bin" -m pip install ipython
 
 # Install the tensorflow wheel itself
-"$python_bin" -m pip install --upgrade --force -t "$VIRTUAL_ENV/lib/python3.8/site-packages/" --no-dependencies "$package_dir"/tensorflow_macos*-cp38-cp38-macosx_11_0_$arch.whl
+"$python_bin" -m pip install --upgrade --force -t "$virtual_env/lib/python3.8/site-packages/" --no-dependencies "$package_dir"/tensorflow_macos*-cp38-cp38-macosx_11_0_$arch.whl
 
 # Finally, upgrade pip to give the developers the correct version.
 "$python_bin" -m pip install --upgrade pip
