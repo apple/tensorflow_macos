@@ -35,7 +35,15 @@ An archive containing Python packages and an installation script can be download
 
 - Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases). The archive contains an installation script, accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.
 
-#### Notes
+#### Conda
+Alternatively, you can download Miniforge Python (which has the Conda package manager) and install TensorFlow on it.
+
+1. Download a Python 3.8 for Apple Silicon ARM from https://github.com/conda-forge/miniforge/#download and install it.
+2. [Optional] Create a Python 3.8 Conda Environment for TensorFlow
+3. Download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases)
+4. Run `scripts/install_venv.sh --prompt` and at the prompt, provide the path to your environment's directory. For example: `~/miniforge3/envs/tensorflow` if your env name is `tensorflow` and you installed Miniforge ot your home directory.
+
+#### Notes/Users/Matthew/miniforge3/envs/tensorflow
 
 For Macs with M1, the following packages are currently unavailable:
 
