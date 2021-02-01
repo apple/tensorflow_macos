@@ -7,7 +7,7 @@ This pre-release delivers hardware-accelerated TensorFlow and TensorFlow Addons 
 
 ### CURRENT RELEASE
 
-- 0.1-alpha1
+- 0.1-alpha2
 
 ### SUPPORTED VERSIONS
 
