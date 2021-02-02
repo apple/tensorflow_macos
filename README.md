@@ -27,7 +27,7 @@ An archive containing Python packages and an installation script can be download
 
 - To quickly try this out, copy and paste the following into Terminal:
 
-  ```
+  ```shell
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
   ```
 
@@ -52,14 +52,14 @@ Please submit feature requests or report issues via [GitHub Issues](https://gith
 
 It is not necessary to make any changes to your existing TensorFlow scripts to use ML Compute as a backend for TensorFlow and TensorFlow Addons.
 
-There is an optional `mlcompute.set_mlc_device(device_name=’any')` API for ML Compute device selection. The default value for `device_name` is `'any’`, which means ML Compute will select the best available device on your system, including multiple GPUs on multi-GPU configurations. Other available options are `‘cpu’` and `‘gpu’`. Please note that in eager mode, ML Compute will use the CPU. For example, to choose the CPU device, you may do the following:
+There is an optional `mlcompute.set_mlc_device(device_name='any')` API for ML Compute device selection. The default value for `device_name` is `'any'`, which means ML Compute will select the best available device on your system, including multiple GPUs on multi-GPU configurations. Other available options are `'cpu'` and `'gpu'`. Please note that in eager mode, ML Compute will use the CPU. For example, to choose the CPU device, you may do the following:
 
-  ```
+  ```python
   # Import mlcompute module to use the optional set_mlc_device API for device selection with ML Compute.
   from tensorflow.python.compiler.mlcompute import mlcompute
 
   # Select CPU device.
-  mlcompute.set_mlc_device(device_name=‘cpu’) # Available options are 'cpu', 'gpu', and ‘any'.
+  mlcompute.set_mlc_device(device_name='cpu') # Available options are 'cpu', 'gpu', and 'any'.
   ```
 
 
