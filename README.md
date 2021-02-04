@@ -28,7 +28,7 @@ An archive containing Python packages and an installation script can be download
 - To quickly try this out, copy and paste the following into Terminal:
 
   ```
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
+  arch -arm64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
   ```
 
   This will verify your system, ask you for confirmation, then create a virtual environment (https://docs.python.org/3.8/tutorial/venv.html) with TensorFlow for macOS installed.
