@@ -35,6 +35,10 @@ An archive containing Python packages and an installation script can be download
 
 - Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases). The archive contains an installation script, accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.
 
+#### Installation on Conda
+
+This pre-release version supports installation and testing using the Python from Xcode Command Line Tools. See [#153](https://github.com/apple/tensorflow_macos/issues/153) for more information on installation in a Conda environment.
+
 #### Notes
 
 For Macs with M1, the following packages are currently unavailable:
