@@ -57,13 +57,3 @@ bash ./$INSTALLER_SCRIPT --prompt || graceful_error
 
 popd
 rm -rf $tmp_dir
-
-
-
-
-
-
-
-
-
-
