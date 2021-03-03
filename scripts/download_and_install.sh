@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=0.1alpha2
+VERSION=0.1alpha3
 INSTALLER_PACKAGE=tensorflow_macos-$VERSION.tar.gz
 INSTALLER_PATH=https://github.com/apple/tensorflow_macos/releases/download/v$VERSION/$INSTALLER_PACKAGE
 INSTALLER_SCRIPT=install_venv.sh
@@ -20,7 +20,7 @@ echo "Installation script for pre-release tensorflow_macos $VERSION.  Please vis
 echo "for instructions and license information."   
 echo
 echo "This script will download tensorflow_macos $VERSION and needed binary dependencies, then install them into a new "
-echo "or existing Python 3.8 virtual enviornoment."
+echo "or existing Python 3.8 virtual environment."
 
 # Make sure the user knows what's going on.  
 read -p 'Continue [y/N]? '    
@@ -57,13 +57,3 @@ bash ./$INSTALLER_SCRIPT --prompt || graceful_error
 
 popd
 rm -rf $tmp_dir
-
-
-
-
-
-
-
-
-
-
