@@ -53,7 +53,7 @@ arch_list_arm64=(  numpy-1.18.5-cp38-cp38-macosx_11_0_arm64.whl
                    h5py-2.10.0-cp38-cp38-macosx_11_0_arm64.whl )
 
 
-tensorflow_version=0.1a2
+tensorflow_version=0.1a3
 
 
 function usage() {
