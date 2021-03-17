@@ -34,7 +34,7 @@ An archive containing Python packages and an installation script can be download
 - Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases). The archive contains an installation script, accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.
 
   ```
-  % curl -fLO https://github.com/apple/tensorflow_macos/releases/download/v0.1alpha2/tensorflow_macos-${VERSION}.tar.gz
+  % curl -fLO https://github.com/apple/tensorflow_macos/releases/download/v0.1alpha3/tensorflow_macos-${VERSION}.tar.gz
   % tar xvzf tensorflow_macos-${VERSION}.tar
   % cd tensorflow_macos
   % ./install_venv.sh --prompt
