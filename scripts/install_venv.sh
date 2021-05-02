@@ -43,17 +43,17 @@
 
 set -e
 
-arch_list_x86_64=( numpy-1.18.5-cp38-cp38-macosx_11_0_x86_64.whl
-                   grpcio-1.33.2-cp38-cp38-macosx_11_0_x86_64.whl       
-                   h5py-2.10.0-cp38-cp38-macosx_11_0_x86_64.whl
-                   scipy-1.5.4-cp38-cp38-macosx_11_0_x86_64.whl )
+arch_list_x86_64=( numpy-1.19.5-cp39-cp39-macosx_11_0_x86_64.whl
+                   grpcio-1.34.1-cp39-cp39-macosx_11_0_x86_64.whl       
+                   h5py-3.1.0-cp39-cp39-macosx_11_0_x86_64.whl
+                   scipy-1.6.1-cp39-cp39-macosx_11_0_x86_64.whl )
 
-arch_list_arm64=(  numpy-1.18.5-cp38-cp38-macosx_11_0_arm64.whl
-                   grpcio-1.33.2-cp38-cp38-macosx_11_0_arm64.whl       
-                   h5py-2.10.0-cp38-cp38-macosx_11_0_arm64.whl )
+arch_list_arm64=(  numpy-1.19.5-cp39-cp39-macosx_11_0_arm64.whl
+                   grpcio-1.34.1-cp39-cp39-macosx_11_0_arm64.whl       
+                   h5py-3.1.0-cp39-cp39-macosx_11_0_arm64.whl )
 
 
-tensorflow_version=0.1a3
+tensorflow_version=0.1a4
 
 
 function usage() {
@@ -182,15 +182,15 @@ tf_install_message=""
 # Now, see if a virtual environment was given as an argument.
 if [[ -e $virtual_env ]] ; then 
   if [[ ! -d "$virtual_env" ]] || [[ ! -e "$virtual_env/bin/python" ]]  ; then 
-    error_exit "$virtual_env does not seem to be a virtual environment.  Please specify a new directory or an existing Python 3.8 virtual environment. "
+    error_exit "$virtual_env does not seem to be a virtual environment.  Please specify a new directory or an existing Python 3.9 virtual environment. "
   fi
   create_venv=0
 
   python_bin="$virtual_env/bin/python"
 
   # Check: Make sure the python version is correct.  
-  if [[ $("$python_bin" --version) != *"3.8"* ]] ; then 
-    error_exit "Python version in specificed virtual environment $virtual_env not 3.8.   Python 3.8 required for tensorflow_macos $tensorflow_version."
+  if [[ $("$python_bin" --version) != *"3.9"* ]] ; then 
+    error_exit "Python version in specificed virtual environment $virtual_env not 3.9.   Python 3.9 required for tensorflow_macos $tensorflow_version."
   fi
 
   if [[ ! -z $python_path_opt ]] && [[ ! "$python_path_opt" -ef "$python_bin" ]] ; then 
@@ -199,7 +199,7 @@ if [[ -e $virtual_env ]] ; then
  
   # Finally, check if tensorflow is currently installed.
 
-  if ls "$virtual_env"/lib/python3.8/site-packages/tensorflow-*.dist-info 1> /dev/null 2>&1; then 
+  if ls "$virtual_env"/lib/python3.9/site-packages/tensorflow-*.dist-info 1> /dev/null 2>&1; then 
     uninstall_tf=1
     print_messages+=( "  -> Uninstall existing tensorflow installation." )
   fi
@@ -210,7 +210,7 @@ else
 
   uninstall_tf=0 
   create_venv=1
-  print_messages+=(  "  -> Create new python 3.8 virtual environment at $virtual_env." 
+  print_messages+=(  "  -> Create new python 3.9 virtual environment at $virtual_env." 
                      "  -> Install tensorflow_macos $tensorflow_version into created virtual environment $virtual_env."  )
 
   if [[ ! -z $python_path_opt ]] ; then 
@@ -228,13 +228,13 @@ else
 
     # Check: python bin executable
     if [[ ! -e $python_bin ]] ; then 
-      error_exit "No suitable Python executable found in path.  Please specify a Python 3.8 executable with the --python option."
+      error_exit "No suitable Python executable found in path.  Please specify a Python 3.9 executable with the --python option."
     fi
   fi
 
   # Check: Make sure the python version is correct.  
-  if [[ $($python_bin --version) != *"3.8"* ]] ; then 
-    error_exit "Error retrieving python version, or python executable $python_bin not version 3.8.  Please specify a Python 3.8 executable with the --python option."
+  if [[ $($python_bin --version) != *"3.9"* ]] ; then 
+    error_exit "Error retrieving python version, or python executable $python_bin not version 3.9.  Please specify a Python 3.9 executable with the --python option."
   else
     echo "Using python from $python_bin." 
   fi
@@ -267,7 +267,7 @@ if [[ $no_dependencies_opt == 0 ]] ; then
   s="  -> Install bundled binary wheels for "
 
   for p in "${packages[@]}" ; do  
-    s="$s ${p%%-cp38*whl}, " 
+    s="$s ${p%%-cp39*whl}, " 
   done
   
   s="${s%%, } into $virtual_env."
@@ -321,13 +321,13 @@ fi
 
 # Upgrade pip and base packages 
 echo ">> Installing and upgrading base packages."
-"$python_bin" -m pip install --force pip==20.2.4 wheel setuptools cached-property six packaging
+"$python_bin" -m pip install --force pip==21.1.1 wheel setuptools cached-property six packaging
 
 echo ">> Installing bundled binary dependencies."
 
 # Note: As soon python packaging supports macOS 11.0 in full, we can remove the -t hackery.
 for f in ${packages[@]} ; do 
-  "$python_bin" -m pip install --upgrade -t "$virtual_env/lib/python3.8/site-packages/" --no-dependencies --force "$package_dir/$f"
+  "$python_bin" -m pip install --upgrade -t "$virtual_env/lib/python3.9/site-packages/" --no-dependencies --force "$package_dir/$f"
 done
 
 # Manually install all the other dependencies. 
@@ -338,10 +338,10 @@ echo ">> Installing dependencies."
 "$python_bin" -m pip install ipython
 
 # Install the tensorflow wheel itself.
-"$python_bin" -m pip install --upgrade --force -t "$virtual_env/lib/python3.8/site-packages/" --no-dependencies "$package_dir"/tensorflow_macos*-cp38-cp38-macosx_11_0_$arch.whl
+"$python_bin" -m pip install --upgrade --force -t "$virtual_env/lib/python3.9/site-packages/" --no-dependencies "$package_dir"/tensorflow_macos*-cp39-cp39-macosx_11_0_$arch.whl
 
 # Install the tensorflow-addons wheel.
-"$python_bin" -m pip install --upgrade --force -t "$virtual_env/lib/python3.8/site-packages/" --no-dependencies "$package_dir"/tensorflow_addons_macos*-cp38-cp38-macosx_11_0_$arch.whl
+"$python_bin" -m pip install --upgrade --force -t "$virtual_env/lib/python3.9/site-packages/" --no-dependencies "$package_dir"/tensorflow_addons_macos*-cp39-cp39-macosx_11_0_$arch.whl
 
 # Finally, upgrade pip to give the developers the correct version.
 "$python_bin" -m pip install --upgrade pip

@@ -7,17 +7,17 @@ This pre-release delivers hardware-accelerated TensorFlow and TensorFlow Addons 
 
 ### CURRENT RELEASE
 
-- 0.1-alpha3
+- 0.1-alpha4
 
 ### SUPPORTED VERSIONS
 
-- TensorFlow r2.4rc0
+- TensorFlow r2.5rc2
 - TensorFlow Addons 0.11.2
 
 ### REQUIREMENTS
 
 - macOS 11.0+
-- Python 3.8 (required to be downloaded from [Xcode Command Line Tools](https://developer.apple.com/download/more/?=command%20line%20tools) for M1 Macs).
+- Python 3.9 (required to be downloaded from [Xcode Command Line Tools](https://developer.apple.com/download/more/?=command%20line%20tools) for M1 Macs).
 
 ### INSTALLATION
 
@@ -29,7 +29,7 @@ An archive containing Python packages and an installation script can be download
   % /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
   ```
 
-  This will verify your system, ask you for confirmation, then create a [virtual environment](https://docs.python.org/3.8/tutorial/venv.html) with TensorFlow for macOS installed.
+  This will verify your system, ask you for confirmation, then create a [virtual environment](https://docs.python.org/3.9/tutorial/venv.html) with TensorFlow for macOS installed.
 
 - Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases). The archive contains an installation script, accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.
 
@@ -54,7 +54,7 @@ For M1 Macs, the following packages are currently unavailable:
 When installing pip packages in a virtual environment, you may need to specify `--target` as follows:
 
 ```
-% pip install --upgrade -t "${VIRTUAL_ENV}/lib/python3.8/site-packages/" PACKAGE_NAME
+% pip install --upgrade -t "${VIRTUAL_ENV}/lib/python3.9/site-packages/" PACKAGE_NAME
 ```
 
 ### ISSUES AND FEEDBACK
