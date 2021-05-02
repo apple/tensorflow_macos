@@ -348,7 +348,7 @@ echo ">> Installing dependencies."
 
 echo '###########################################################################'
 echo 
-echo "TensorFlow and TensorFlow Addons with ML Compute for macOS 11.0 successfully installed."
+echo "TensorFlow and TensorFlow Addons with ML Compute for macOS 11.3 successfully installed."
 echo 
 
 if [[ -e "$virtual_env/bin/activate" ]] ; then  

@@ -1,6 +1,9 @@
 # Release 0.1-alpha4
 
-* Tensorflow v2.5rc2 (Compatible with python 3.9)
+* Python 3.9 native in Big Sur
+* Tensorflow v2.5.0rc2
+* Packages updated to Tensorflow compatible
+
 
 # Release 0.1-alpha3
 
