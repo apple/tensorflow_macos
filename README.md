@@ -11,7 +11,7 @@ This pre-release delivers hardware-accelerated TensorFlow and TensorFlow Addons 
 
 ### SUPPORTED VERSIONS
 
-- TensorFlow r2.5.0rc2
+- TensorFlow r2.5.0
 - TensorFlow Addons 0.12.1
 
 ### REQUIREMENTS
