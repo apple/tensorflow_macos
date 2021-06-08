@@ -1,5 +1,12 @@
-## Mac-optimized TensorFlow and TensorFlow Addons
+## *You can now leverage Apple’s tensorflow-metal PluggableDevice in TensorFlow v2.5 for accelerated training on Mac GPUs directly with Metal. Learn more [here](https://developer.apple.com/metal/tensorflow-plugin/).*
 
+ 
+
+ 
+  
+
+
+## Mac-optimized TensorFlow and TensorFlow Addons
 
 ### INTRODUCTION
 
