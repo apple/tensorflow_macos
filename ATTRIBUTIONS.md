@@ -1,6 +1,6 @@
 # Attributions
 
-We include binary wheels of the following open source packages compiled for macOS 11.0: 
+We include binary wheels of the following open source packages compiled for macOS 11.3: 
 
 - NumPy: https://github.com/numpy/numpy
 - SciPy: https://github.com/scipy/scipy
