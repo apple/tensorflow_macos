@@ -32,19 +32,19 @@ An archive containing Python packages and an installation script can be download
 
 - To quickly try this out, copy and paste the following into Terminal:
 
-  ```
-  % /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
+  ```shell
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"
   ```
 
   This will verify your system, ask you for confirmation, then create a [virtual environment](https://docs.python.org/3.8/tutorial/venv.html) with TensorFlow for macOS installed.
 
 - Alternatively, download the archive file from the [releases](https://github.com/apple/tensorflow_macos/releases). The archive contains an installation script, accelerated versions of TensorFlow, TensorFlow Addons, and needed dependencies.
 
-  ```
-  % curl -fLO https://github.com/apple/tensorflow_macos/releases/download/v0.1alpha2/tensorflow_macos-${VERSION}.tar.gz
-  % tar xvzf tensorflow_macos-${VERSION}.tar
-  % cd tensorflow_macos
-  % ./install_venv.sh --prompt
+  ```shell
+  curl -fLO https://github.com/apple/tensorflow_macos/releases/download/v0.1alpha2/tensorflow_macos-${VERSION}.tar.gz
+  tar xvzf tensorflow_macos-${VERSION}.tar
+  cd tensorflow_macos
+  ./install_venv.sh --prompt
   ```
 
 #### Installation on Conda
@@ -60,8 +60,8 @@ For M1 Macs, the following packages are currently unavailable:
 
 When installing pip packages in a virtual environment, you may need to specify `--target` as follows:
 
-```
-% pip install --upgrade -t "${VIRTUAL_ENV}/lib/python3.8/site-packages/" PACKAGE_NAME
+```shell
+pip install --upgrade -t "${VIRTUAL_ENV}/lib/python3.8/site-packages/" PACKAGE_NAME
 ```
 
 ### ISSUES AND FEEDBACK
@@ -76,12 +76,12 @@ It is not necessary to make any changes to your existing TensorFlow scripts to u
 
 There is an optional `mlcompute.set_mlc_device(device_name='any')` API for ML Compute device selection. The default value for `device_name` is `'any'`, which means ML Compute will select the best available device on your system, including multiple GPUs on multi-GPU configurations. Other available options are `'cpu'` and `'gpu'`. Please note that in eager mode, ML Compute will use the CPU. For example, to choose the CPU device, you may do the following:
 
-  ```
-  # Import mlcompute module to use the optional set_mlc_device API for device selection with ML Compute.
-  from tensorflow.python.compiler.mlcompute import mlcompute
+  ```python
+# Import mlcompute module to use the optional set_mlc_device API for device selection with ML Compute.
+from tensorflow.python.compiler.mlcompute import mlcompute
 
-  # Select CPU device.
-  mlcompute.set_mlc_device(device_name='cpu') # Available options are 'cpu', 'gpu', and 'any'.
+# Select CPU device.
+mlcompute.set_mlc_device(device_name='cpu') # Available options are 'cpu', 'gpu', and 'any'.
   ```
 
 #### Unsupported TensorFlow Features
